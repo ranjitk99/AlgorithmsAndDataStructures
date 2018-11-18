@@ -270,3 +270,140 @@ class GFG {
            
     } 
 } 
+
+//Given a sorted array consisting of only integers where every element appears twice except for one element which appears once. 
+//Find this single element that appears only once
+//Input: [1,1,2,3,3,4,4,8,8]
+//Output: 2
+// O(log n) time complexity
+public class Solution {
+    public int singleNonDuplicate(int[] nums) {
+        //Length of the array would be odd or else the constraint fails
+        int n = nums.length;
+        if (n == 1) return nums[1];
+        
+        for (int i=0,j=1;i<n-1;i+=2){
+            if (nums[i]!=nums[j]){
+                return nums[i];
+            }
+            j+=2;
+        }
+        return nums[n-1];
+        
+    }
+}
+/*
+Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window.
+Example:
+Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3
+Output: [3,3,5,5,6,7] 
+Explanation: 
+ */
+ public class Solution {
+    public int[] MaxSlidingWindow(int[] nums, int k) {
+       int j, max; 
+        List<int> result = new List<int>();
+        if(nums.Length==0)
+        {
+           return new int[]{};
+        }
+		for (int i = 0; i <= nums.Length - k; i++) { 
+			
+			max = nums[i]; 
+
+			for (j = 1; j < k; j++) 
+			{ 
+				if (nums[i + j] > max) 
+					max = nums[i + j]; 
+			} 
+			result.Add(max);
+		} 
+        
+        return result.ToArray();
+    }
+}
+
+/*
+Given an array of size n and an integer k, return the of count of distinct numbers in all windows of size k.
+Example:
+
+Input:  arr[] = {1, 2, 1, 3, 4, 2, 3};
+            k = 4
+Output:
+3
+4
+4
+3
+ */
+
+  class Program
+    {
+        static void countDistinct(int[] arr, int k)
+        {
+            // Creates an empty hashMap hM 
+            Dictionary<int,int> hM =
+                          new Dictionary<int,int>();
+
+            // initialize distinct element  count for 
+            // current window 
+            int dist_count = 0;
+
+            // Traverse the first window and store count 
+            // of every element in hash map 
+            for (int i = 0; i < k; i++)
+            {
+                if (!hM.ContainsKey(arr[i]))
+                {
+                    hM.Add(arr[i], 1);
+                    dist_count++;
+                }
+                else
+                {
+                    int count = hM[arr[i]];
+                    hM[arr[i]]= count + 1;
+                }
+            }
+
+            // Print count of first window 
+           Console.WriteLine(dist_count);
+
+            // Traverse through the remaining array 
+            for (int i = k; i < arr.Length; i++)
+            {
+
+                // Remove first element of previous window 
+                // If there was only one occurrence, then 
+                // reduce distinct count. 
+                if (hM[arr[i - k]] == 1)
+                {
+                    hM.Remove(arr[i - k]);
+                    dist_count--;
+                }
+                else // reduce count of the removed element 
+                {
+                    int count = hM[arr[i - k]];
+                    hM[arr[i - k]]= count - 1;
+                }
+
+                // Add new element of current window 
+                // If this element appears first time, 
+                // increment distinct element count 
+                if (!hM.ContainsKey(arr[i]))
+                {
+                    hM.Add(arr[i], 1);
+                    dist_count++;
+                }
+                else // Increment distinct element count 
+                {
+                    int count = hM[arr[i]];
+                    hM[arr[i]]=count + 1;
+                }
+
+                // Print count of current window 
+                Console.WriteLine(dist_count);
+                
+            }
+            Console.ReadKey();
+        }
+
+    }
