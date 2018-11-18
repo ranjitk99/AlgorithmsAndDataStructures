@@ -120,7 +120,7 @@ public class Solution {
 
 
 ///Given an array that contains numbers from 1 to n-1 and exactly 1 duplicate, find that duplicate.
-
+//O(n). Modification of the array is allowed and  O(1) extra space
 class GFG 
 { 
     static void printRepeating(int []arr, 
@@ -150,6 +150,42 @@ class GFG
         printRepeating(arr, arr_size); 
     } 
 } 
+
+
+/////Given an array that contains numbers from 1 to n-1 and exactly 1 duplicate, find that duplicate.
+// Should be less than O(n^2). Modification of the array is *NOT* allowed
+/*
+Note:
+Input: [1,3,4,2,2]
+Output: 2
+You must not modify the array (assume the array is read only).
+You must use only constant, O(1) extra space.
+Your runtime complexity should be less than O(n^2).
+There is only one duplicate number in the array, but it could be repeated more than once.
+ */
+public int findDuplicate(int[] nums) {
+        
+        if (nums.Length > 1)
+	    {
+		int slow = nums[0];
+		int fast = nums[nums[0]];
+		while (slow != fast)
+		{
+			slow = nums[slow];
+			fast = nums[nums[fast]];
+		}
+
+		fast = 0;
+		while (fast != slow)
+		{
+			fast = nums[fast];
+			slow = nums[slow];
+		}
+		return slow;
+	    }
+	        return -1;
+    }
+
 
 ////5. Search an element in an array where difference between adjacent elements is 1.
 ///For example: arr[] = {8, 7, 6, 7, 6, 5, 4, 3, 2, 3, 4, 3}
