@@ -99,3 +99,49 @@ String.prototype.evaluate = function() {
  and then push all the values to stack while looping the list from the end
 
   */
+//----------------------------------------------------------------------------------------------------------------------------
+  /*
+  Implement QUEUE using Stacks
+  
+   */
+
+   public class MyQueue {
+
+    // Push element x to the back of queue.
+Stack input = new Stack();
+Stack output = new Stack();
+public void Push(int x) {
+    input.Push(x);
+}
+
+// Removes the element from front of queue.
+public int Pop() {
+    Peek();
+    return Convert.ToInt32(output.Pop());
+}
+
+// Get the front element.
+public int Peek() {
+    if(output.Count==0){
+        while(input.Count!=0){
+            output.Push(input.Pop());
+        }
+    }
+    return Convert.ToInt32(output.Peek());
+}
+
+// Return whether the queue is empty.
+public bool Empty() {
+    if(input.Count==0&&output.Count==0)return true;
+    else return false;
+}
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.Push(x);
+ * int param_2 = obj.Pop();
+ * int param_3 = obj.Peek();
+ * bool param_4 = obj.Empty();
+ */
