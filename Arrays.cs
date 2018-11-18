@@ -1,5 +1,8 @@
 //Find the element that appears once in a sorted array where all other elements appear twice one after another. Find that element in 0(logn) complexity
-
+/*
+Input:   arr[] = {1, 1, 3, 3, 4, 5, 5, 7, 7, 8, 8}
+Output:  4
+ */
 class GFG { 
       
     // A Binary Search based 
@@ -329,11 +332,13 @@ public class Solution {
     }
 }
 /*
-Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window.
+Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. 
+You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window.
 Example:
 Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3
 Output: [3,3,5,5,6,7] 
 Explanation: 
+Time: 0(nk)
  */
  public class Solution {
     public int[] MaxSlidingWindow(int[] nums, int k) {
